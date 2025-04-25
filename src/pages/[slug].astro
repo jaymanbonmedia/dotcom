@@ -1,0 +1,16 @@
+---
+import pageMap from "../data/pageMap.json";
+import pages from "../data/pages.json";
+import NotionLayout from "../layouts/notion-layout.astro";
+
+export async function getStaticPaths() {
+  return pages.map(page => ({
+    params: { slug: page.slug},
+  }));
+}
+
+const { slug } = Astro.params
+const page = pages.find(p => p.slug === slug)!;
+---
+
+<NotionLayout title={page.title} pageId={page.id} pageMap={pageMap}>

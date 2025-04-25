@@ -1,0 +1,6 @@
+---
+import pageMap from "../data/pageMap.json";
+import NotionLayout from "../layouts/notion-layout.astro";
+
+---
+<NotionLayout title="Novels By Jay D. Bontrager" pageId={process.env.NOTION_HOME_PAGE_ID!} pageMap={pageMap}>

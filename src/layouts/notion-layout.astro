@@ -1,0 +1,21 @@
+---
+import { NotionAPI } from 'notion-client';
+import { NotionPage } from '../components/NotionPage.tsx';
+import Layout from './layout.astro';
+
+interface Props {
+  title: string;
+  pageMap: Record<string, string>;
+  pageId: string;
+}
+const { pageMap, pageId } = Astro.props as Props;
+
+const notion = new NotionAPI({
+  authToken: process.env.NOTION_TOKEN
+})
+const page = await notion.getPage(pageId)
+---
+
+<Layout title={Astro.props.title}>
+  <NotionPage page={page} pageMap={pageMap} />
+</Layout>
