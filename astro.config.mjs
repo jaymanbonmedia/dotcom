@@ -4,6 +4,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
+  base: process.env.ASTRO_BASE,
   server: {
     host: true,
   },

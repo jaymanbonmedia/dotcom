@@ -34,13 +34,15 @@ jobs:
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_HOME_PAGE_ID: ${{ secrets.NOTION_HOME_PAGE_ID }}
+          ASTRO_BASE: ${{ vars.ASTRO_BASE }}
         run: |
           npm ci
           npx tsx src/scripts/mapSiteContents.ts
           npm run build
-          mv dist _site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
   # Deployment job
   deploy:
