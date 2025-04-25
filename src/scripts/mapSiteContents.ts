@@ -1,5 +1,5 @@
 import { Client } from "@notionhq/client";
-import { writeFileSync } from "fs";
+import { mkdirSync, writeFileSync } from "fs";
 
 // Initializing a client
 const notion = new Client({
@@ -40,6 +40,8 @@ async function mapPagesToSlugs() {
     acc[page.id] = slugify(page.title);
     return acc;
   }, {} as Record<string, string>);
+
+  mkdirSync('src/data', { recursive: true });
 
   writeFileSync('src/data/pageMap.json', JSON.stringify(pageMap, null, 2));
 
