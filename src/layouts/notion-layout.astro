@@ -9,6 +9,7 @@ interface Props {
   pageId: string;
 }
 const { pageMap, pageId } = Astro.props as Props;
+const baseURL = import.meta.env.BASE_URL
 
 const notion = new NotionAPI({
   authToken: process.env.NOTION_TOKEN
@@ -17,5 +18,5 @@ const page = await notion.getPage(pageId)
 ---
 
 <Layout title={Astro.props.title}>
-  <NotionPage page={page} pageMap={pageMap} />
+  <NotionPage page={page} pageMap={pageMap} baseUrl={baseURL}/>
 </Layout>
